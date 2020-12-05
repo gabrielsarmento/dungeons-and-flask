@@ -5,3 +5,7 @@ class BaseApiException(Exception):
 
     def __init__(self, metadata=None):
         self.metadata = metadata
+
+
+class PayloadValidationException(BaseApiException):
+    status_code = 400

@@ -1,10 +1,10 @@
 from tornado.ioloop import IOLoop
 from tornado.web import Application
 
-from app.handlers.spells import SpellHandler
+from app.handlers.books import BookHandler
 
 urls = [
-    (r'/spells', SpellHandler)
+    (r'/books', BookHandler)
 ]
 
 

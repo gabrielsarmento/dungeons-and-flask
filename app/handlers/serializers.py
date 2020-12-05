@@ -1,6 +1,10 @@
 from marshmallow import Schema, fields
 
 
+class BookSchema(Schema):
+    name = fields.String(required=True)
+
+
 class SpellSchema(Schema):
     name = fields.String(required=True)
     level = fields.Integer(required=True)
