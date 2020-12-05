@@ -17,7 +17,6 @@ class BaseHandler(RequestHandler):  # noqa
                 'message': error.message,
                 'metadata': error.metadata
             })
-        # raise error
 
     def prepare(self):
         self.db = get_db_session()

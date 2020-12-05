@@ -7,10 +7,14 @@ from settings import base
 Base = declarative_base()
 
 
-def get_db_session():
-    engine = create_engine(
+def get_engine():
+    return create_engine(
         base.DATABASE['connection_creation'].format(**base.DATABASE)
     )
+
+
+def get_db_session():
+    engine = get_engine()
     return scoped_session(
         sessionmaker(
             bind=engine,

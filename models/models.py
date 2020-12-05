@@ -1,5 +1,5 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Text
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import backref, relationship
 
 from app.core.database import Base
 
@@ -26,8 +26,11 @@ class SpellModel(Base):
     is_ritual = Column(Boolean, nullable=False)
     book_id = Column(String(36), ForeignKey('books.id'), nullable=False)
 
-    school = relationship('SchoolModel', back_populates='spells')
     book = relationship('BookModel')
+    school = relationship(
+        'SchoolModel',
+        backref=backref('spells', order_by=id)
+    )
 
 
 class SchoolModel(Base):
@@ -37,5 +40,4 @@ class SchoolModel(Base):
     name = Column(String(256), nullable=False)
     book_id = Column(String(36), ForeignKey('books.id'), nullable=False)
 
-    book = relationship('BookModel')
-    spells = relationship('SpellModel')
+    book = relationship('BookModel', backref=backref('schools', order_by=id))
